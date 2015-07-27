@@ -1,4 +1,4 @@
-//Exercise 1: Create a string that consists of the first letter of each word in
+package lesson1;//Exercise 1: Create a string that consists of the first letter of each word in
 //        the list of Strings provided. HINT: Use a StringBuilder to construct the
 //        result.
 
