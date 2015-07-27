@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Java template
+*.class
+.idea
+out
+java8homeworks.iml
+.DS_Store
