@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Speakjava (simon.ritter@oracle.com)
@@ -54,7 +55,7 @@ public class Lesson2 {
                 "The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
 
     /* YOUR CODE HERE */
-        list.stream().map(x -> x.toUpperCase()).forEach(System.out::println);
+        list.stream().map(x -> x.toLowerCase()).forEach(System.out::println);
     }
 
     /**
@@ -68,7 +69,7 @@ public class Lesson2 {
                 "The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
 
     /* YOUR CODE HERE */
-        list.stream().map(x -> x.toUpperCase()).filter(x -> x.length() % 2 == 0).forEach(System.out::println);
+        list.stream().map(x -> x.toLowerCase()).filter(x -> x.length() % 2 == 1).forEach(System.out::println);
     }
 
     /**
@@ -107,8 +108,8 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("/Users/cchang/IntellijWorkspace/java8homeworks/src/SonnetI1.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
-            List<String> l = reader.lines().distinct().collect(Collectors.toList());
-            l.forEach(System.out::println);
+            List<String> l = reader.lines().flatMap(line -> Stream.of(line.split(WORD_REGEXP))).distinct().collect(Collectors.toList());
+            l.stream().forEach(System.out::println); // what's the difference between l.stream().forEach() and l.forEach()
         }
     }
 
@@ -121,7 +122,7 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("/Users/cchang/IntellijWorkspace/java8homeworks/src/SonnetI1.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
-            List<String> l = reader.lines().distinct().map(x -> x.toLowerCase()).sorted().collect(Collectors.toList());
+            List<String> l = reader.lines().flatMap(line -> Stream.of(line.split(WORD_REGEXP))).distinct().map(x -> x.toLowerCase()).sorted().collect(Collectors.toList());
             l.forEach(System.out::println);
         }
     }
@@ -133,7 +134,7 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("/Users/cchang/IntellijWorkspace/java8homeworks/src/SonnetI1.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
-            List<String> l = reader.lines().distinct().map(x -> x.toLowerCase()).sorted((x, y) -> x.length() - y.length()).collect(Collectors.toList());
+            List<String> l = reader.lines().flatMap(line -> Stream.of(line.split(WORD_REGEXP))).distinct().map(x -> x.toLowerCase()).sorted((x, y) -> x.length() - y.length()).collect(Collectors.toList());
             l.forEach(System.out::println);
         }
     }
